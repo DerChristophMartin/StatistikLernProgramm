@@ -1,3 +1,5 @@
+import { writable } from 'svelte/store';
+
 export type EngineStatus = 'idle' | 'loading' | 'ready' | 'running' | 'error';
 
 export interface ExecutionResult {
@@ -17,13 +19,18 @@ export class PyodideEngine {
     private plotBuffers: Map<string, string[]> = new Map();
     private _status: EngineStatus = 'idle';
     private statusListeners: Set<(status: EngineStatus) => void> = new Set();
+    private statusStore = writable<EngineStatus>('idle');
 
     get status(): EngineStatus {
         return this._status;
     }
 
+    // Erlaube Svelte-Subscription ($pyodideEngine)
+    subscribe = this.statusStore.subscribe;
+
     private setStatus(status: EngineStatus) {
         this._status = status;
+        this.statusStore.set(status);
         this.statusListeners.forEach((fn) => fn(status));
     }
 

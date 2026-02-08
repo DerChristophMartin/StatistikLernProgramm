@@ -7,6 +7,9 @@
   import ExerciseCell from './ExerciseCell.svelte';
   import QuizCell from './QuizCell.svelte';
   import OutputCell from './OutputCell.svelte';
+  import InteractiveWidget from './InteractiveWidget.svelte';
+  import HintCell from './HintCell.svelte';
+  import InfoCell from './InfoCell.svelte';
 
   export let lessonId: string;
   export let courseId: string;
@@ -71,6 +74,12 @@
             />
           {:else if cell.type === 'quiz'}
             <QuizCell {cell} />
+          {:else if cell.type === 'widget'}
+            <InteractiveWidget {cell} />
+          {:else if cell.type === 'hint'}
+            <HintCell {cell} />
+          {:else if cell.type === 'info'}
+            <InfoCell {cell} />
           {/if}
         </div>
       {/each}

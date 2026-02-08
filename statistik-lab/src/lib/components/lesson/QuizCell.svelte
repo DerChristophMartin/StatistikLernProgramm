@@ -36,7 +36,7 @@
         <div class="checkbox" class:radio={!cell.multiSelect}>
           {#if option.selected}
             <span class="dot"></span>
-          {{/if}
+          {/if}
         </div>
         <span class="text">{option.text}</span>
       </button>

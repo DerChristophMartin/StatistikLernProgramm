@@ -14,19 +14,19 @@
   }
 </script>
 
-<div class="exercise-cell" class:solved={cell.solved}>
+<div class="exercise-cell" class:solved={cell.completed}>
   <div class="card-header">
     <div class="title-group">
       <span class="badge">Aufgabe</span>
       <h3 class="title">Bringen Sie es in die Praxis</h3>
     </div>
-    {#if cell.solved}
+    {#if cell.completed}
       <span class="status-solved">✓ Gelöst!</span>
     {/if}
   </div>
 
-  {#if cell.description}
-    <div class="description">{@html cell.description}</div>
+  {#if cell.instruction}
+    <div class="description">{@html cell.instruction}</div>
   {/if}
 
   <div class="editor-section">
@@ -38,7 +38,7 @@
     </div>
     <CodeEditor 
       bind:this={editor}
-      code={cell.initialCode} 
+      code={cell.templateCode} 
       editable={true} 
       on:run={(e) => dispatch('run', e.detail)}
     />
