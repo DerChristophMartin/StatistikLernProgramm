@@ -1,0 +1,25 @@
+[package]
+name = "statistik-lab"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "statistik_lab_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[build-dependencies]
+tauri-build = "2.0.3"
+
+[dependencies]
+tauri = { version = "2.1.1", features = [] }
+tauri-plugin-shell = "2.0.1"
+tauri-plugin-opener = "2.0.1"
+tauri-plugin-dialog = "2.0.1"
+tauri-plugin-fs = "2.0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rusqlite = { version = "0.31.0", features = ["bundled"] }
+log = "0.4"
+env_logger = "0.11"
+directories = "5.0"
+uuid = { version = "1.8", features = ["v4"] }
